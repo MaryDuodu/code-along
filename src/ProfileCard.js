@@ -3,8 +3,9 @@ import writers from "./writers";
 
 export const ProfileCard = ({writer}) => {
     return(
+    
      <div className="card">
-        <img src={`/images/${writers.avatar}.png`} width="300px" height="300" alt="" />
+        <img src={`/images/${writer.avatar}.png`} width="300px" height="300" alt="" />
         <div className="textGroup">
             <h3>writer.name</h3>
             <p>writer.email</p>
