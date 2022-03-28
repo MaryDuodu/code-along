@@ -1,59 +1,36 @@
 
 import {useEffect, useState} from "react"
-import ProfileCard from "./ProfileCard";
+import ProfileCard from "./components/ProfileCard";
+import ProfileForm from "./components/ProfileForm";
 
 
 function App() {
-  const [data, setData] = useState({
-    writers: [],
-    loading: false,
-  });
-
-const handleClick = () => {
-    setData(prevData => ({
-      ...prevData,
-      loading: true,
-    }));
-  
-  setTimeout(() => {
-    const getWriters = async () => {
-      const response = await fetch("/writers.json");
-      const data = await response.json();
-      setData({writers: data,
-        loading: false})
+  const [allProfile, setAllProfile] = useState([
+    {
+      firstName: "Hannah",
+      lastName: "Montana",
+      email: "hannahmontana@email.com",
+      phone: "+233 024 455 6745",
     }
-    getWriters();
-  }, 2000);
-};
+  ])
 
-if (data.loading) {
-  return (
-    <div>
-      <h1>Writer Profiles </h1>
-      <div className="container">
-        <div className="card action">
-          <p className="infoText"> loading... </p>
-          </div>
-        </div>
-      </div>
-        );
-      }
+  const submit = (profile) => { 
+    const arr= allProfile;
+    arr.push(profile);
+    setAllProfile(arr);
+    console.log(allProfile);
+  }
+
+
+
     return (
       <div>
       <h1>Writer Profiles </h1>
       <div className="container">
-        {data.writers.length === 0 ? (
-        <div className="card action">
-          <p className="infoText"> Oops... no witer profile found </p>
-          <button className="actionBtn" onClick={handleClick}>
-            Get writers
-          </button>
-        </div>
-      ) : ( 
-        data.writers.map((writer) =>(
+        <ProfileForm submit={submit} />
+        {allProfile.map((writer) =>(
           <ProfileCard key={writer.id} writer={writer} />
-        ))
-      )}
+        ))}
       </div>
     </div>
     );
