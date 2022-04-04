@@ -194,3 +194,20 @@ hr {
 .post > h3 {
   text-align: center;
 }
+
+section{
+  width: 90%;
+  text-align: center;
+  padding: 40px;
+}
+section h3{
+  margin: 0 0 10px 0;
+  text-decoration: underline;
+  font-family: sans-serif;
+}
+
+section p{
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
